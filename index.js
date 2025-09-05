@@ -13,7 +13,7 @@ mongose.connect("mongodb://127.0.0.1:27017/todos").then(function(){
 const todos = mongose.model("todos",{name:String},"action")
 
 
-app.listen(5000,function(){
+app.listen(process.env.PORT || 5000,function(){
     console.log("server started....")
 })
 
