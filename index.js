@@ -7,9 +7,12 @@ app.use(cors())
 
 app.use(express.json())
 
-mongose.connect("mongodb://127.0.0.1:27017/todos").then(function(){
-    console.log("database connected....");
-})
+mongose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
 const todos = mongose.model("todos",{name:String},"action")
 
 
